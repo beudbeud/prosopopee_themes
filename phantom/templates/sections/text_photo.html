@@ -1,0 +1,11 @@
+{% set image = Image(section.image) %}
+{% if section.text %}
+{% set caption = section.text %}
+{% endif %}
+{{ image.copy() }}
+<p>
+<span class="image {{ section.image.float }}">
+  <img src="{{ image.generate_thumbnail("x150") }}">
+</span>
+{{ section.text }}
+</p>

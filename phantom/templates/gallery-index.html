@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--
+  Phantom by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>{{ settings.title }} - {{ gallery.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="../static/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link type="text/css" rel="stylesheet" href="../static/css/baguetteBox.min.css"  media="screen,projection"/>
+    {% if gallery.audio_enabled %}
+    <link type="text/css" rel="stylesheet" href="../static/css/mediaelementplayer.css"  media="screen,projection"/>
+    {% endif %}
+
+    <!--[if lte IE 9]><link rel="stylesheet" href="../static/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="../static/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Header -->
+      <header id="header">
+        <div class="inner">
+
+          <!-- Logo -->
+          <a href="{{ settings.url }}" class="logo">
+            <span class="symbol"><img src="../static/img/logo_75.png" alt="" /></span><span class="title">{{ settings.title }}</span>
+          </a>
+
+          {% if settings.menu %}
+          <!-- Nav -->
+          <nav>
+            <ul>
+              <li><a href="#menu">Menu</a></li>
+            </ul>
+          </nav>
+          {% endif %}
+
+        </div>
+      </header>
+
+      {% if settings.menu %}
+      {% include 'menu.html' %}
+      {% endif %}
+
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <h1>{{ gallery.title }}</h1>
+          {% for section in gallery.sections %}
+          {% include "sections/" + section.type + ".html" %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% include "footer.html" %}
+    </div>
+
+      <script src="../static/js/jquery.min.js"></script>
+      <script src="../static/js/skel.min.js"></script> 
+      <script src="../static/js/util.js"></script>
+      <script src="../static/js/main.js"></script>
+      <!--[if lte IE 8]><script src="../static/js/ie/respond.min.js"></script><![endif]-->
+      <script type="text/javascript" src="../static/js/jquery.lazyload.min.js" charset="utf-8"></script>
+      <script type="text/javascript" src="../static/js/picturefill.min.js" charset="utf-8"></script>
+      <script type="text/javascript" src="../static/js/baguetteBox.min.js" charset="utf-8"></script>
+      {% if gallery.audio_enabled %}
+      <script type="text/javascript" src="../static/js/mediaelement-and-player.min.js" charset="utf-8"></script>
+      {% endif %}
+      <script type="text/javascript">
+$(function() {
+
+  baguetteBox.run(".baguette", {});
+
+  {% if gallery.panorama_enabled %}
+  $(".panorama").panorama_viewer({
+    repeat: true,
+    direction: "horizontal",
+    animationTime: 150,
+    easing: "linear",
+    overlay: true
+  });
+  {% endif %}
+}); 
+
+{% if gallery.audio_enabled %}
+$('audio').mediaelementplayer({
+  alwaysShowControls: true,
+  features: ['playpause','progress','volume'],
+  audioVolume: 'horizontal',
+  audioWidth: 450,
+  audioHeight: 30,
+  iPadUseNativeControls: true,
+  iPhoneUseNativeControls: true,
+  AndroidUseNativeControls: true
+});
+{% endif %}
+
+$(function() {
+  $("img.lazy").lazyload({
+      threshold : 400,
+      effect : "fadeIn"
+    });
+  $("video.lazy").lazyload({
+      threshold : 400,
+      effect : "fadeIn"
+    });
+  $("section.lazy").lazyload({
+      threshold : 400,
+      effect : "fadeIn"
+    });
+});
+      </script>
+
+</body>
+</html>

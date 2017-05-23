@@ -1,0 +1,39 @@
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<section>
+			<h2>Me contacter</h2>
+      <form method="POST" action="http://formspree.io/florian.belmonte@gmail.com">
+				<div class="field half first">
+					<input type="text" name="Nom" id="Nom" placeholder="Nom" />
+				</div>
+				<div class="field half">
+					<input type="email" name="email" id="email" placeholder="Email" />
+				</div>
+				<div class="field">
+					<textarea name="message" id="message" placeholder="Message"></textarea>
+				</div>
+				<ul class="actions">
+					<li><input type="submit" value="Envoyer" class="special" /></li>
+				</ul>
+			</form>
+		</section>
+		<section>
+			<h2>Me suivre</h2>
+			<ul class="icons">
+				<li><a href="https://twitter.com/Florianbelmonte" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://www.facebook.com/florianbelmonte01" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.instagram.com/florianbelmonte/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="mailto:florian.belmonte@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+			</ul>
+		</section>
+		<ul class="copyright">
+      {% if settings.licence is not defined %}
+      {% set licence_name = 'Untitled. All rights reserved' %}
+      {% else %}
+      {% set licence_name = settings.licence.name %}
+      {% endif %}
+      <li>&copy; {{ licence_name }}</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Generated using <a href="https://github.com/psycojoker/prosopopee">Prosopopée</a></li>
+		</ul>
+	</div>
+</footer>

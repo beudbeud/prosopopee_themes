@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+  Phantom by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Florian Belmonte</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <div class="inner">
+
+          <!-- Logo -->
+          <a href="{{ settings.url }}" class="logo">
+            <span class="symbol"><img src="static/img/logo_75.png" alt="" /></span><span class="title">{{ settings.title }}</span>
+          </a>
+
+          {% if settings.menu %}
+          <!-- Nav -->
+          <nav>
+            <ul>
+              <li><a href="#menu">Menu</a></li>
+            </ul>
+          </nav>
+          {% endif %}          
+
+        </div>
+      </header>
+
+      {% if settings.menu %}
+      {% include 'menu.html' %}
+      {% endif %}
+
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <header>
+            <h1>{{ settings.sub_title }}<br /></h1>
+            <p>{{ settings.text }}</p>
+          </header>
+          {% for galleries_line in galleries|reverse|batch(400)|reverse %}
+          <section class="tiles">
+            {% for gallery in galleries_line|reverse %}
+            <article>
+              <span class="image">
+                {% set cover = Image(gallery.cover) %}
+                {{ cover.copy() }}
+                <img src="{{ cover.generate_thumbnail("x900") }}" alt="" />
+              </span>
+              <a href="{{ gallery.link }}">
+                <h2>{{ gallery.title }}</h2>
+                <div class="content">
+                  <p>{{ gallery.sub_title }}</p>
+                </div>
+                {% if sub_title %}
+                <div class="caption__overlay">
+                  <h5 class="caption__overlay__title">{{ sub_title }}</h5>
+                </div>
+                {% endif %}
+              </a>
+            </article>
+            {% endfor %}
+          </section>
+          {% endfor %}
+        </div>
+      </div>
+      {% include 'footer.html' %}
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/skel.min.js"></script>
+    <script src="static/js/util.js"></script>
+    <!--[if lte IE 8]><script src="static/js/ie/respond.min.js"></script><![endif]-->
+    <script src="static/js/main.js"></script>
+
+  </body>
+</html>
